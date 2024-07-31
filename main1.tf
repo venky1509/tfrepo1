@@ -23,13 +23,9 @@ key_name = var.keyname26
 public_key = tls_private_key.rsa.public_key_openssh
 }
 resource "local_file" "tfec2-key" {
-
 content = tls_private_key.rsa.private_key_pem
-
 filename = var.keyname26
-
 }
-
 resource "aws_instance" "web-server26" {
  ami      = "ami-0a0e5d9c7acc336f1"
  instance_type = "t2.micro"
