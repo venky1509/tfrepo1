@@ -26,7 +26,7 @@ resource "local_file" "tfec2-key" {
 content = tls_private_key.rsa.private_key_pem
 filename = var.keyname1
 }
-resource "aws_instance" "web-server26" {
+resource "aws_instance" "web-server1" {
  ami      = "ami-0a0e5d9c7acc336f1"
  instance_type = "t2.micro"
  key_name   = var.keyname1
@@ -47,7 +47,7 @@ resource "aws_instance" "web-server26" {
  connection {
   user    = "ubuntu"
   private_key = "${file(local_file.tf-key.filename)}"
-  host = "${aws_instance.web-server.public_ip}"
+  host = "${aws_instance.web-server1.public_ip}"
  }
 }
 
