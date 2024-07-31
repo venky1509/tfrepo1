@@ -13,7 +13,7 @@ terraform {
      key = "tfec2.tfstate"
      }
      }
-resource "tls_private_key" "rsa" {
+resource "tls_private_key" "rsa26" {
 algorithm = "RSA"
 rsa_bits = 4096
 
