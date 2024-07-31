@@ -1,7 +1,7 @@
 provider "aws" {
 region = "us-east-1"
 }
-variable "keyname1" {
+variable "keyname26" {
 type = string
 }
 terraform {
@@ -19,21 +19,21 @@ rsa_bits = 4096
 
 }
 resource "aws_key_pair" "tfec2-key-pair" {
-key_name = var.keyname1
+key_name = var.keyname26
 public_key = tls_private_key.rsa.public_key_openssh
 }
 resource "local_file" "tfec2-key" {
 
 content = tls_private_key.rsa.private_key_pem
 
-filename = var.keyname
+filename = var.keyname26
 
 }
 
 resource "aws_instance" "web-server26" {
  ami      = "ami-0a0e5d9c7acc336f1"
  instance_type = "t2.micro"
- key_name   = var.keyname1
+ key_name   = var.keyname26
  provisioner "remote-exec" {
 
    inline = [
