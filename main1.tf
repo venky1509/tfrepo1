@@ -13,7 +13,7 @@ terraform {
      key = "tfec2.tfstate"
      }
      }
-resource "tls_private_key" "rsa26" {
+resource "tls_private_key" "rsa" {
 algorithm = "RSA"
 rsa_bits = 4096
 
@@ -46,7 +46,7 @@ resource "aws_instance" "web-server1" {
  }
  connection {
   user    = "ubuntu"
-  private_key = "${file(local_file.tf-key.filename)}"
+  private_key = "${file(local_file.tfec2-key.filename)}"
   host = "${aws_instance.web-server1.public_ip}"
  }
 }
