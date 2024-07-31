@@ -1,11 +1,19 @@
 provider "aws" {
     region = "us-east-1"
 }
-resource "aws_vpc" "test1" {
-    cidr_block = "192.165.0.0/16"
-    tags = {
+variable "keyname1" {
+ type = string
 
-      "Name" = "VPC1"
-
-    }
+}
+resource "tls_private_key" "rsa" {
+algorithm = "RSA"
+rsa_bits = 4096
+}
+resource "aws_key_pair" "tf-key-pair" {
+key_name = var.keyname1
+public_key = tls_private_key.rsa.public_key_openssh
+}
+resource "local_file" "tf-key" {
+content = tls_private_key.rsa.private_key_pem
+filename = var.keyname1
 }
